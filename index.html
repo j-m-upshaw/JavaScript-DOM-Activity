@@ -40,8 +40,8 @@
     <h1>To-Do List</h1>
 
     <!-- Input field to add new tasks -->
-    <input type="text" id="taskInput" placeholder="Add a new task">
-    
+    <input type="text" id="taskInput" placeholder="Add a new task">    
+
     <!-- Button to add a new task to the list -->
     <button class="add-btn" onclick="addTask()">Add Task</button>
     
@@ -51,6 +51,64 @@
 
 <script>
     // Placeholder for functionality to be added in future exercises
+    //Function to add a task
+    //Also creates the ability to edit or delete items
+    function addTask() {
+        const inp = document.getElementById("taskInput");
+        //removes white space
+        const taskText = inp.value.trim();
+
+        if (taskText != "") {
+            const ul = document.getElementById("todoList");
+            //creates list item to add
+            const li = document.createElement("li");
+            //created to hold the input value
+            const span = document.createElement("span");
+            span.textContent = taskText;
+
+            //Creates the edit button
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.onclick = () => editTask(span);
+
+            //Creates the remove button
+            const remButton = document.createElement("button");
+            remButton.textContent = "Delete";
+            remButton.onclick = () => removeTask(li);
+
+            //Append new list item and buttons
+            li.appendChild(span);
+            li.appendChild(editButton);
+            li.appendChild(remButton);
+
+            //Append new task to the list
+            ul.appendChild(li);
+
+            //Clear for new input
+            inp.value = "";
+        }
+
+        else {
+            alert("Please enter a valid task");
+        }
+
+        function editTask(span) {
+            //Ask for new text
+            let newInfo = prompt("Please enter new info", span.textContent);
+
+            //Makes sure input isn't empty before and after the trim
+            if (newInfo != "" && newInfo.trim() != "") {
+                //changes the info after the text
+                span.textContent = newInfo.trim();
+            }
+        }
+
+        function removeTask(li) {
+            
+        }
+
+
+    }
 </script>
 
 </body>
