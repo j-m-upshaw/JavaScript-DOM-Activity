@@ -103,8 +103,9 @@
             }
         }
 
-        function removeTask(li) {
-            
+        function removeTask(task) {
+            const list = document.getElementById("todoList");//Gets the list
+            list.removeChild(task);
         }
 
 
